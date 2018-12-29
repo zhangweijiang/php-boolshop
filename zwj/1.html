@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/zwj/view/js/front/jquery-3.1.0.js"></script>
+</head>
+<body>
+<script>
+    $(function(){
+
+
+    var username='张伟江';
+
+    var setting = {
+        url:'/zwj/chat/custom_deal.php',
+        dataType:'text',
+        type:'post',
+        async:'true',
+        data:{'username':'张伟江'},
+        success:function(res) {
+            console.log(res);
+
+
+            $('<p>客服对你说<br />' + res.content + '</p>').appendTo($('#msgzone'));
+            window.setTimeout(function () {
+                $.ajax(setting);
+
+            }, 1000);
+
+        },error:function(data){
+            alert(11);
+            console.log(data);
+            alert(data);
+        }
+    };
+
+    $.ajax(setting);
+    })
+</script>
+</body>
+</html>

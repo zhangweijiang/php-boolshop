@@ -1,0 +1,82 @@
+*{	margin:0;
+	padding:0;
+	font-size: 15px;
+}
+.main-sidebar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 230px;
+	z-index: 810;
+	background-color: #222d32;
+}
+.head{
+	height:50px;
+	background: rgb(34,45,50);
+	position: relative;
+	
+}
+.head img{
+	position:absolute;
+	left:-33px;
+}
+.head #nav{
+	height:33px;
+	position:absolute;
+	left:55%;
+	top:9px;
+}
+.head #nav li a{
+	text-decoration:none;
+	color:white;
+	padding-top:7px;
+	padding-bottom: 7px;
+	padding-left:13px;
+	padding-right:13px;
+}
+.head #nav li a:hover{
+	color:orange;
+	border:1px dotted white;
+	background:#226FBE;
+	border-radius: 7px;
+} 
+
+.head #nav li{
+	float:left;
+	height:33px;
+	line-height: 33px;
+	text-align: center;
+	margin-right: 7px;
+}
+.outerContent{
+	width: 230px;
+	float: left;
+	position: relative;
+	overflow: hidden;
+}
+.innerContent{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.outer{
+	width: 7px;
+	background: rgb(117,117,117);
+	position: relative;
+	float: left;
+}
+
+.inner{
+	width: 7px;
+	height: 40px;
+	background: rgb(63,63,63);
+	border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	cursor: pointer;
+	position: absolute;
+	left: 0;
+	top: 0;
+}

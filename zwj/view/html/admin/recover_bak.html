@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>栏目列表</title>
+<link rel="stylesheet" href="/zwj/view/css/admin/lanmu.css">
+<script src="/jlk/js/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.button').click(function(){
+			$('input:checkbox').not('.first').each(function() {
+			       	 if ($(this).is(':checked')) {
+			       	 	$.ajax({
+						type: "POST",
+			            		 url: "/zwj/controller/admin/backup_delete.php",
+			            		 data: {file:$(this).parent().next().find('a').html()},
+			            		 dataType: "text",
+			            		  success: function(data){
+			            		  	window.location.href=window.location.href;
+			            		
+			            		  }
+						});
+			              		
+			       		 }
+				 });
+		})
+		
+		$('.first').click(function(){
+			if($(this).is(':checked')){
+				$('input:checkbox').not('.first').each(function() {
+					this.checked=true;
+				});
+			}else{
+				$('input:checkbox').not('.first').each(function() {
+					this.checked=false;
+				});
+			}
+		});
+
+		$('.import').click(function(e){
+		      if(confirm('是否导入，将覆盖原有数据！')){
+		      	var file=$(this).parent().prev().prev().prev().find('a').html();
+		      		$('img.loading').show();
+		      			$.ajax({
+						type: "POST",
+			            		 url: "/zwj/controller/admin/import.php",
+			            		 async:true,
+			            		 data: {file:file},
+			            		 dataType: "text",
+			            		  success: function(data){
+			            		  	$('img.loading').hide();
+			            			alert("数据导入成功");
+			            			//alert(data);
+			            		  }
+					       });
+			      }else{
+			        e.preventDefault();
+			      }
+		    });
+		$('.submit2').click(function(){
+			$('.loading2').show();
+		})
+	});
+</script>
+</head>
+<body style="background:rgb(221,238,242);">
+  <div id="header">
+    <a href="/zwj/view/html/admin/admin_index.html">boolshop管理中心</a>
+    <span>-恢复备份</span>
+     <a class="lanmu" href="/zwj/view/html/admin/backup.html">数据备份</a>
+  </div>
+<div style="text-align:center;height:25px;background:rgb(187,221,229);width:80%;line-height:25px;font-size:15px;border:2px solid white;">恢复备份</div>
+<form action="/zwj/controller/admin/import_pc.php" method="POST" enctype="multipart/form-data" >
+	<p><span style="font-size:14px;">本地sql文件:&nbsp;&nbsp;</span><input type="file" name="file"></p>
+	<p><input type="submit" value="上传并执行文件" style="margin-left:5%;" class="submit2"></p>
+	<img src="/zwj/view/images/admin/loading.gif" alt="" class="loading2" style="position:relative;display:none;left:33%;top:-93px;">
+</form>
+
+  <div style="text-align:center;height:25px;background:rgb(187,221,229);width:80%;line-height:25px;font-size:15px;border:2px solid white;">服务器上备份文件</div>
+<table border='1' cellspacing='0' width="80%">
+	<tr>
+		<td style="width:10%;text-align:center;">
+			<input type="checkbox" class="first">移除
+		</td>
+		<td style="width:30%;text-align:center;">文件名</td>
+		<td style="width:20%;text-align:center;">时间</td>
+		<td style="width:20%;text-align:center;">大小</td>
+		<td style="width:20%;text-align:center;">操作</td>
+	</tr>
+	<?php foreach($file as $v){?>
+	<tr>
+		<td>
+			<input type="checkbox" >
+		</td>
+		<td><a href="/zwj/controller/admin/bak_content.php?filename=<?php echo $v;?>"><?php echo $v;?></a></td>
+		<td><?php echo date('Y-m-d H:i:s',filemtime('backup/'.$v));?></td>
+		<td><?php echo round(filesize(ROOT.'backup/'.$v)/1024,2).'KB';?></td>
+		<td style="text-align:center;"><a href="#" class="import" style="margin-right:11px;">导入</a><a href="/zwj/controller/admin/download.php?filename=<?php echo $v;?>" class="export">导出</a></td>
+	</tr>
+	<?php }?>
+</table>
+<input type="button" value="删除" class="button">
+<img src="/zwj/view/images/admin/loading.gif" alt="" class="loading" style="position:relative;top:-126px;left:40%;display:none;">
+</body>
+</html>

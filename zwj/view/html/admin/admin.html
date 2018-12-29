@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>后台管理</title>
+<script src="../../view/js/admin/jquery-3.1.0.js"></script>
+<script src="../../view/js/admin/jquery.mousewheel.min.js"></script>
+<script src="../../view/js/admin/admin.js"></script>
+<script src="../../view/js/admin/sidebar-menu.js"></script>
+<script src="../../view/js/admin/notebook.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">  -->
+<link rel="stylesheet" href="../../view/css/admin/reset.css">
+ <link rel="stylesheet" href="../../view/css/admin/bootstrap.min.css"> 
+<link rel="stylesheet" href="../../view/css/admin/font-awesome.css">
+<link rel="stylesheet" href="../../view/css/admin/admin.css">
+<link rel="stylesheet" href="../../view/css/admin/sidebar-menu.css">
+ <link rel="stylesheet" href="../../view/css/admin/notebook.css">
+
+	<style>
+
+
+		ul#nav>li>a{
+
+			cursor:pointer;
+
+		}
+		ul#nav>li>a:hover{
+			color:red;
+
+		}
+		ul#nav>li>ul.nav_list{
+
+			height:100px;
+			display: none;
+		}
+		ul#nav>li>ul.nav_list>li{
+			display:block;
+			width:120px;
+			padding: 0 7px;
+			float:none;
+		}
+		ul#nav>li>ul.nav_list>li>a{
+			width:100%;
+			color:blue;
+		}
+	</style>
+	<script>
+		$(function(){
+			$('.bgwhite').hover(function(){
+
+				$('.nav_list').show();
+			},function(){
+				$('.nav_list').hide();
+			});
+
+			$('.clearCache').click(function(){
+
+				$.ajax({
+					url:'/zwj/controller/admin/clearCache.php',
+					type:'post',
+					success:function(data){
+						alert("缓存清除成功！");
+					}
+				})
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<!-- 记事本 -->
+	<div class="notebook_edit" >		
+		<img src="/zwj/view/images/admin/btn_close.gif" alt="" class="img_right">
+		<img src="/zwj/view/images/admin/btn_maximize.gif" alt="" class="img_left1">
+		<img src="/zwj/view/images/admin/btn_minimize.gif" alt="" class="img_left">
+		<div class="clear"></div>
+	<div class="notebook_content">
+		<div id="notebook_head">记事本</div>
+		<form action="/jlk/notebook.php"  id="form1" method="post">
+			<textarea name="content" id="content"  rows="10" style="width:405px;"><?php echo $notebook['content']?></textarea>
+			<p><input type="checkbox" style="margin-top:7px;margin-left:234px;" id="checkbox">
+				<span>自动保存</span>
+			      <input type="submit" value="保存"  class="submit">
+			      <input type="button" value="清除"  class="reset">
+
+			</p>
+		</form>
+		</div>
+	</div>
+<div class="clear"></div>
+	<div class="head">
+		<img src="../../view/images/admin/logo.png" alt="图片不存在">
+		<ul id="nav" >
+			<li><a href="/index.php" target="_blank">查看网店</a></li>
+			<li><a href="javascript:void(0)" id="shuaxin">刷新</a></li>
+			<li><a href="javascript:void(0)" class="notebook">记事本</a></li>
+			<!--<li><a href="../../view/html/admin/help.html" target='right'>帮助</a></li>-->
+			<li  class="bgwhite"><a href="#">个人设置</a>
+				<ul class="nav_list">
+					<li><a href="#" class="message">消息</a></li>
+					<li><a href="javascript:void(0)" class="clearCache">清楚缓存</a></li>
+				</ul>
+			</li>
+			<li><a href="/zwj/view/html/admin/about_us.html" target='right'>关于boolshop</a></li>
+		</ul>
+	</div>
+	<div class="outerContent" >
+			<aside class="main-sidebar innerContent" >
+				<section class="sidebar"><br>
+					<ul class="sidebar-menu">
+						<li class="header" style="margin-left: 3px;"><i
+							class="fa fa-list" style="color: white"></i>&nbsp;&nbsp;&nbsp;&nbsp;菜&nbsp;单</li>
+
+						<li class="treeview"><a href="#"> <i
+								class="fa fa-cloud"></i> <span>云服务中心</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-circle-o"></i> Invoice</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> Profile</a></li>
+							</ul></li>
+						
+						<li class="treeview"><a href="#"> <i
+								class="fa fa-thumb-tack"></i> <span>商品管理</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="../../controller/admin/goodslist.php" target="right"><i class="fa fa-circle-o"></i> 商品列表</a></li>
+								<li><a href="../../controller/admin/goodsadd.php" target="right"><i class="fa fa-circle-o"></i> 添加新商品</a></li>
+								<li><a href="../../controller/admin/catelist.php" target="right"><i class="fa fa-circle-o"></i> 商品分类</a></li>
+								<li><a href="../../controller/admin/cateadd.php" target="right"><i class="fa fa-circle-o"></i> 添加分类</a></li>
+								<li><a href="../../controller/admin/goodstypelist.php" target="right"><i class="fa fa-circle-o"></i> 商品类型</a></li>
+								<li><a href="../../controller/admin/commentlist.php" target="right"><i class="fa fa-circle-o"></i> 用户评论</a></li>
+								
+							</ul></li>
+							
+						<li class="treeview"><a href="#"> <i
+								class="fa fa-shopping-cart"></i> <span>订单管理</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="/zwj/controller/admin/order.php" target="right"><i class="fa fa-circle-o"></i> 交易订单</a></li>
+
+							</ul></li>
+
+						<li class="treeview"><a href="#"> <i class="fa fa-comment"></i>
+							<?php if(count($result)>0){?><span>留言管理</span> <span style="margin-left:43.1%;width:13%;display:inline-block;background:rgb(217,83,79);border-radius:3px;text-align:center;"><?php echo count($result);?></span>
+							<?php }else{?>
+							<span>留言管理</span> <i class="fa fa-angle-left pull-right"></i>
+							<?php }?>
+
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="/zwj/controller/admin/message_list.php" target="right"><i class="fa fa-circle-o"></i>留言列表</a></li>
+								<li><a href="/zwj/controller/admin/untreated_message.php" target="right"><i class="fa fa-circle-o"></i> 未处理留言</a></li>
+							</ul></li>
+
+
+
+						<li class="treeview"><a href="#"> <i class="fa fa-recycle"></i> <span>商品回收站</span><i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="../../controller/admin/goodstrash.php?act=show" target="right"><i class="fa fa-circle-o"></i> 回收商品</a></li>
+
+							</ul></li>
+
+						<li class="treeview"><a href="#"> <i
+								class="fa fa-puzzle-piece"></i> <span>数据库管理</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="/zwj/controller/admin/sql_select.php" target="right"><i class="fa fa-circle-o"></i> SQL查询</a></li>
+								<li><a href="/zwj/view/html/admin/backup.html" target="right"><i class="fa fa-circle-o"></i> 数据备份</a></li>
+								<li><a href="/zwj/controller/admin/recover_bak.php" target="right"><i class="fa fa-circle-o"></i> 恢复备份</a></li>
+							</ul></li>
+
+						<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
+							<span>会员管理</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="/zwj/controller/admin/user_list.php" target="right"><i class="fa fa-circle-o"></i> 用户列表</a></li>
+
+							</ul></li>
+						<li class="treeview"><a href="#"> <i
+								class="fa fa-slideshare"></i> <span>消息管理</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-circle-o"></i> 查看消息
+										v1</a></li>
+							</ul></li>
+							
+
+						<li class="treeview"><a href="#"> <i
+								class="fa fa-newspaper-o"></i> <span>广告管理</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-circle-o"></i> Simple
+										tables</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> Data
+										tables</a></li>
+							</ul></li>
+
+						<li class="treeview"><a href="#"> <i
+								class="fa fa-file-text"></i> <span>文章管理</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-circle-o"></i> Simple
+										tables</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> Data
+										tables</a></li>
+							</ul></li>
+
+						<li class="treeview"><a href="#"> <i
+								class="fa fa-files-o "></i> <span>模板管理</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-circle-o"></i> Simple
+										tables</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> Data
+										tables</a></li>
+							</ul></li>
+							
+						<li class="treeview"><a href="#"> <i class="fa fa-key"></i>
+								<span>权限管理</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-circle-o"></i> General
+										Elements</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> Advanced
+										Elements</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> Editors</a></li>
+							</ul></li>
+							
+						<li class="treeview"><a href="#"> <i class="fa fa fa-gear"></i>
+								<span>系统设置</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-circle-o"></i> Simple
+										tables</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> Data
+										tables</a></li>
+							</ul></li>
+							
+					</ul>
+				</section>
+			</aside>
+	</div>
+
+	<div class="outer">
+		<div class="inner"></div>
+	</div>
+	<iframe src="" frameborder="0" name="right" id="myiframe"></iframe>
+	<script type="text/javascript">
+	$.sidebarMenu($('.sidebar-menu'));
+	$('#shuaxin').click(function(e){
+		document.getElementById('myiframe').contentWindow.location.reload(true);
+		e.preventDefault();
+	});
+	</script>
+
+	<script src="/zwj/view/js/jqueyUI/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/zwj/view/css/front/reset.css">
+	<link rel="stylesheet" href="/zwj/view/js/jqueyUI/jquery-ui.min.css">
+	<div id="dialog" title="对话框"  style="display: none;">
+		<div id="msgzone">
+
+		</div>
+		<br>
+		<p>
+			<textarea style="width:500px;height:60px;" class="chat_content"></textarea>
+		</p>
+		<br>
+		回复:<span id="rec"></span><br>
+		<button onclick="huifu();">发送</button>
+	</div>
+
+
+	<style>
+		.ui-dialog{
+			left:410px;
+			postition:fixed;
+
+		}
+		#msgzone {
+			border: solid 1px gray;
+			width:500px;
+			height:300px;
+			overflow:scroll;
+		}
+	</style>
+	<script>
+
+		// 长轮询
+		//get_get_message_reply()
+		//param request_type  请求类型 详解：
+		//      get_message   获取信息
+		//      comfrim_read  确认已经读取了信息
+		function get_message_reply(url, rec, request_type, send_data) {
+			var setting = {
+				url: url,
+				data: {
+					'request_type': request_type,
+					'rec':rec,
+					'send_data': send_data,
+				},
+				type: 'post',
+				dataType: 'json',
+				success: function (response) {
+					console.log(response);
+					if (response.status == 1) {
+						if (response.response_type == 'is_read') {
+							//将消息写入到消息盒子
+							var messages = response.info;
+							var message_str = '';
+							var id_arr = new Array();
+							for (var i in messages) {
+								id_arr.push(messages[i]['mid']);
+								var cont = '';
+								cont += '<a style="color:blue;" onclick="reply(\''+ messages[i].pos +'\')">' + messages[i].pos + '</a>' + '对你说<br />';
+								cont += messages[i].content + '<br />';
+								$('.ui-dialog-title').html('用户：'+messages[i].pos);
+								document.getElementById('msgzone').innerHTML += cont;
+							}
+
+							//确认收到消息
+							get_message_reply(url, rec, 'confirm_read', id_arr);
+
+						} else if (response.response_type == 'is_connecting') {
+							//继续获取消息
+							get_message_reply(url, rec, 'get_message', '');
+						}
+					}
+				}
+			};
+			$.ajax(setting);
+		}
+
+		var url = '/zwj/chat/kefu_deal.php';
+		var rec='admin';
+		get_message_reply(url, rec, 'get_message', '');
+
+		function reply(pos) {
+			//alert(pos);
+			document.getElementById('rec').innerHTML = pos;
+		}
+
+		function huifu() {
+			var rec = document.getElementById('rec').innerHTML;
+			var cont = $('.chat_content').val();
+
+			if(rec=='' || cont== '') {
+				alert('请选择回复人并填内容');
+				return;
+			}
+			var cont = $('.chat_content').val();
+			$.post('/zwj/chat/sendmsg.php',{rec:rec,content:cont,pos:'admin'},function(res) {
+				if(res.status==1) {
+					var rep = '';
+					rep +=  '你对' +  rec + '说<br />';
+					rep += cont + '<br />';
+					document.getElementById('msgzone').innerHTML += rep;
+					$('.chat_content').val('');
+				}else{
+					console.log('发送失败！');
+				}
+
+			},'json');
+		}
+		$(function(){
+			$('.ui-dialog').css('top','100px');
+			//$('.ui-dialog').css('display','none');
+			$('.message').click(function(){
+				$( "#dialog" ).dialog({width:530});
+			})
+		})
+	</script>
+
+
+</body>
+</html>

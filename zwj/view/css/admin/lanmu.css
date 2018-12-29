@@ -1,0 +1,41 @@
+body{
+  margin: 10px;
+
+}
+a{
+  text-decoration: none;
+}
+  #header{
+    line-height: 35px;
+    height:35px;
+    border:1px solid #bbdde5;
+  }
+  #header>a{
+    font-size: 20px;
+    color:black;
+    font-weight:bold;
+  }
+  #header>a:hover{
+    color:#08ab0f;
+  }
+  #header>span{
+    font-size:16px;
+    color:#555555;
+  }
+ #header>a.lanmu{
+    color:#555555;
+    font-size: 16px;
+    border:2px solid rgb(35,224,107);
+    padding-top:4px;
+    padding-bottom:4px;
+    padding-left:13px;
+    padding-right:13px;
+    margin-left:68%;
+    background:rgb(221,238,242);
+    border-radius: 7px;
+  }
+  #header>a.lanmu:hover{
+    cursor:pointer;
+    background: white;
+    color:rgb(8,171,15);
+  }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/zwj/view/js/front/jquery-3.1.0.js"></script>
+    <script src="/zwj/view/js/front/jquery.validation.min.js"></script>
+</head>
+<body>
+<form action="#" id="form1">
+    <input type="text"  name="username">
+    <span></span>
+    <input type="submit">
+</form>
+<script>
+    $.validator.addMethod('check1',function(value,element){
+       alert(44);
+        alert(this.optional(element));
+        return this.optional(element);
+    },"ddddd");
+    $('#form1').validate({
+        errorPlacement:function(error,element){
+            $(element).nextAll('span').append(error);
+        },
+        rules:{
+            username:{
+                //required:true,
+                check1:true,
+            }
+        },
+    messages:{
+            username:{
+                //required:"dd",
+            }
+    }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+div.notebook_edit{
+		display: none;
+		width:420px;
+		height:293px;
+		position:fixed;
+		right:100px;
+		top:83px;
+		
+	}
+	div.notebook_content{
+		background: rgb(216,217,223);
+	}
+	div.notebook_edit>.img_left{
+		display: block;
+		float:right;
+
+	}
+	div.notebook_edit>.img_left1{
+		display: none;
+		float:right;
+
+	}
+	div.notebook_edit>.img_right{
+		display: block;
+		float:right;
+		margin-right: 7px;
+		margin-left: 2px;
+	}
+	#form1{
+		width:408px;
+		display: block;
+		margin:0 auto;
+	}
+	#notebook_head{
+		background: url('/zwj/view/images/admin/icon_title.gif') no-repeat;
+		height:32px;
+		background-position: 16px 11px;
+		font-size: 13px;
+		line-height: 36px;
+		padding-left:33px;
+	}
+	#form1>p>input{
+		float:left;
+		display:block;
+	}
+	#form1>p>span{
+		float:left;
+		display:block;
+		font-size: 11px;
+		margin-top:6px;
+		margin-left: 4px;
+	}
+	#form1>p{
+		background: url('/zwj/view/images/admin/admin/btn_drop.gif') no-repeat;
+		height:30px;		
+		font-size:11px;
+		background-position: 393px  5px;
+	}
+	div.notebook_edit>img.img_right:hover{
+		cursor: pointer;
+	}
+	div.notebook_edit>img.img_left:hover{
+		cursor: pointer;
+	}
+	div.notebook_edit>img.img_left1:hover{
+		cursor: pointer;
+	}
+	input.submit{
+		width:40px;
+		height:20px;
+		color:white;
+		background:rgb(184,183,200);
+		margin-right:3px;
+		margin-left:5px;
+		margin-top:3px;
+	}
+	input.reset{
+		width:40px;
+		height:20px;
+		color:white;
+		background:rgb(184,183,200);
+		margin-top:3px;
+	}

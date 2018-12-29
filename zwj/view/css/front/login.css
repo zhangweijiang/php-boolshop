@@ -1,0 +1,86 @@
+/*登陆窗口的css*/
+#login{
+			width:350px;
+			height: 370px;
+			background: white;
+			position: absolute;
+			overflow: hidden;
+			z-index:1;
+		}
+		#login:hover{
+			cursor: auto;
+		}
+		p{
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			margin-left: 23px;
+			margin-bottom: 24px;
+		}
+		p.p_first{
+			
+			margin-top: 55px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		p.p_notice{
+			display: none;
+			width:305px;
+			background: rgb(254,242,242);
+			margin-top: 55px;
+			font-size: 14px;
+			margin-bottom: 13px;
+			
+		
+			
+		}
+		p>img{
+			float:left;
+			border:1px solid rgb(169,169,169);
+			border-right:0;
+			background-color:rgb(221,221,221);
+
+		}
+		p.p_notice>img{
+			float:left;
+			background: rgb(254,242,242);
+			border:0px;
+		}
+		p.p_notice>span{
+			color:rgb(108,108,108);
+		}
+		p.p_notice>span>a{
+			text-decoration: none;
+			color:red;
+		}
+		p>input{
+			padding:0;
+			float:left;
+			width:260px;
+			height:38px;
+		}
+		p>a{
+			text-decoration:none;
+			font-size:14px;
+			color:rgb(108,108,108);
+		}
+		p>a:hover{
+			color:rgb(196,0,0);
+		}
+		p>a#a_first{
+			margin-left:180px;
+			
+		}
+		input#submit{
+			width:303px;
+			background:rgb(196,0,0);
+			border:0;
+			outline:0;
+			border-radius:3px;
+			color:white;
+			font-weight:bold;
+			font-size:16px;
+		}
+		input#submit:hover{
+			cursor: pointer;
+		}

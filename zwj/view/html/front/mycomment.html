@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的留言</title>
+    <script src="/zwj/view/js/front/jquery-3.1.0.js"></script>
+    <style>
+        {literal}
+        ul{
+            margin:0;
+            padding:0;
+        }
+        ul>li{
+            list-style: none;
+            padding:0;
+            margin:0;
+            padding:13px 0;
+            border-bottom: 1px dashed #d3d3d3;
+        }
+
+        {/literal}
+    </style>
+
+</head>
+<body>
+{nocache}
+<div style="width:950px;height:33px;line-height:33px;background: url('/zwj/view/images/front/bgbr_01.gif')">
+    <div style="width:80px;height:33px;line-height:33px;background: url('/zwj/view/images/front/span.png');text-align:center;color:white;">我的评论</div>
+
+</div>
+<ul>
+    {foreach $commentdata as $v}
+    <li><span style="font-weight:bold;">商品评论：</span><a href="/zwj/controller/front/goods.php?goods_id={$v.goods_id}#comment" style="color:red;text-decoration:none" target="_parent">{$v.goods_name}</a><span>({$v.comment_time|date_format:'%Y-%m-%d %H:%M:%S'})</span>
+
+        <div class="clear" style="clear:both;"></div>
+        <span>{$v.content}</span><br>
+        <span style="font-weight:bold;">回复：</span><br>
+        {$v.response}
+    </li>
+    {/foreach}
+</ul>
+{/nocache}
+</body>
+</html>

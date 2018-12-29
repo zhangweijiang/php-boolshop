@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOOLSHOP 管理中心 - 交易订单</title>
+    <script src="../../view/js/admin/jquery-3.1.0.js"></script>
+    <script src='../../lib/ueditor/editor_config.js'></script>
+    <script src='../../lib/ueditor/editor_all_min.js'></script>
+    <link rel="stylesheet" href="/zwj/view/css/admin/general.css">
+    <link rel="stylesheet" href="/zwj/view/css/admin/main.css">
+</head>
+<body>
+<input type="hidden" class="status" value="{$smarty.get.status}">
+<h1>
+    <span class="action-span"><a href="/zwj/controller/admin/commentlist.php">用户评论</a></span>
+		<span class="action-span1"><a href="#">BOOLSHOP
+            管理中心</a> </span><span id="search_id" class="action-span1"> -评论详情 </span>
+    <div style="clear: both"></div>
+</h1>
+<form action="/zwj/controller/admin/commet_detail_act.php" id="comment_form" method="post">
+    <p>用户名：<input type="text" value="{$result.customer_name}" readonly></p>
+    <p>回复内容：<textarea name="response" id="response" cols="30" rows="10">{$result.response}</textarea></p>
+    <input type="hidden" name="comment_id" value="{$result.comment_id}">
+    <p><input type="submit" value="确定">&nbsp;&nbsp;&nbsp;<input type="reset" value="重置"></p>
+</form>
+<script>
+    {literal}
+        $('#comment_form').submit(function(e){
+            var content= $.trim($('#response').val());
+            if(content==''){
+                alert('回复内容不能为空');
+                e.preventDefault();
+            }
+        });
+
+    {/literal}
+</script>
+</body>
+</html>

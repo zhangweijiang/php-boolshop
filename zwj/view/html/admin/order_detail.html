@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BOOLSHOP 管理中心</title>
+	<script src="../../view/js/admin/jquery-3.1.0.js"></script>
+	<script src='../../lib/ueditor/editor_config.js'></script>
+	<script src='../../lib/ueditor/editor_all_min.js'></script>
+	<link rel="stylesheet" href="/zwj/view/css/admin/general.css">
+	<link rel="stylesheet" href="/zwj/view/css/admin/main.css">
+	
+</head>
+<body>
+	
+	<h1>
+		
+		<span class="action-span1"><a href="#">BOOLSHOP
+				管理中心</a> </span>
+		<div style="clear: both"></div>
+	</h1>
+	<div style="width:98%;background:gray;height:33px;line-height:33px;font-size:16px;font-weight:bold;">订单状态</div>
+	<div style="width:95%;margin-left:20px;">
+	<p>订单号：{$order_info.order_sn}</p>
+	<p>订单总额：<span style="color:red;">&yen;{$order_info.subtotal}</span></p>
+	<p>订单状态：{if $order_action.order_status==0}待付款{else if $order_action.order_status==1}待发货{else if $order_action.order_status==2}待收货{else}交易完成{/if}</p>
+	</div>
+	<div style="width:98%;background:gray;height:33px;line-height:33px;font-size:16px;font-weight:bold;">订单详情</div>
+	<h3>订单信息</h3>
+	<div style="width:95%;margin-left:20px;">
+	<p>买家：{$order_info.customer_name}</p>
+	<p>下单时间{$order_info|date_format:'%Y-%m-%d %H:%M:%S'}</p>
+	</div>
+
+	<h3>收货人及发货信息</h3>
+	<div style="width:95%;margin-left:20px;">
+	<p><span style="float:left;width:300px;">收货人姓名：{$order_info.reciver}</span><span style="float:right;width:300px;">所在地区：{$order_info.zone}</span></p>
+	<div style="clear:both;"></div>
+	<p><span style="float:left;width:300px;">邮政编码:{$order_info.zipcode}</span><span style="float:right;width:300px;">电话号码：{$order_info.mobile}</span></p>
+	<div style="clear:both;"></div>
+	<p><span style="float:left;width:300px;">手机号码:{$order_info.tel}</span><span style="float:right;width:300px;">详细地址：{$order_info.address}</span></p>
+	<div style="clear:both;"></div>
+	<p>电子邮件:{$order_info.email}</p>
+	</div>
+	<h3>商品信息</h3>
+	<table style="width:98%;">
+		<tr align="center" style="background:gray;height:30px;line-height:30px;font-weight:bold;font-size:15px;">
+			<th>商品信息</th>
+			<th>商品规格</th>
+			<th>单价</th>
+			<th>数量</th>
+			<th>操作</th>
+		</tr>
+		{foreach $order_goods as $og}
+		<tr align="center" >
+			<td align="left" ><a  target="_parent" href="/zwj/controller/front/goods.php?goods_id={$og.goods_id}">{if $og.goods_color_img}<img src="/zwj/{$og.goods_color_img}" alt="" style="width:60px;height:60px;float:left">{else}<img src="/zwj/view/images/admin/no_picture.gif" alt="" style="width:60px;height:60px;float:left">{/if}<span style="float:left;height:60px;line-height:60px;"></span>{$og.goods_name}</a></td>
+			<td style="width:30%;">{if $og.goods_color_img}颜色:{$og.goods_color_desc}{/if}{if $og.attr_value}{$og.attr_name}：{$og.attr_value}{/if}</td>
+			<td style="width:15%;">{$og.shop_price}</td>
+			<td style="width:15%;">{$og.number}</td>
+			<td style="width:15%;">{if $og.order_status==3}<a style="color:red;" target="_parent" href="/zwj/controller/front/goods.php?goods_id={$og.goods_id}">评价</a>{/if}</td>
+		</tr>
+		{/foreach}
+	</table>
+	<a href="/zwj/controller/admin/order.php" style="width:80px;height:33px;line-height:33px;text-align:center;color:white;background:gray;margin-top:13px;display:block;text-decoration:none;font-size:16px;font-weight:bold;">返回</a>
+</body>
+</html>

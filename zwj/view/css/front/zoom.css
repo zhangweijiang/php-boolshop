@@ -1,0 +1,107 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+li{
+	list-style-type: none;
+}
+
+.zoom{
+	position: relative;
+	z-index: 10;
+}
+
+.zoomMiddle{
+	border: 1px solid #ccc;
+	width: 420px;
+	height: 420px;
+	margin-bottom: 3px;
+	position: relative;
+}
+.zoomMiddle img{
+	width: 420px;
+	height: 420px;
+	position: relative;
+
+
+}
+
+.mask{
+	width: 150px;
+	height: 150px;
+	background: url('/zwj/view/images/front/dot.png');
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+}
+
+.zoomSmall{
+	-overflow: hidden;
+	width: 420px;
+	height: 75px;
+}
+.zoomSmall span{
+	float: left;
+	height: 73px;
+	line-height: 73px;
+	width: 10px;
+	text-align: center;
+	border: 1px solid #ccc;
+	cursor: pointer;
+}
+.zoomSmall span.disable{
+	cursor: default;
+	background: #ccc;
+}
+.wrapSmallImg{
+	float: left;
+	height: 75px;
+	width: 396px;
+	/*background: #f00;*/
+	position: relative;
+	overflow: hidden;
+}
+
+.wrapSmallImg ul{
+	width: 1620px;
+	/*background: #f00;*/
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.wrapSmallImg ul li{
+	float: left;
+	width: 71px;
+	height: 71px;
+	border: 2px solid #ccc;
+	margin: 0 2px;
+	_display: inline;
+	cursor: pointer;
+}
+.wrapSmallImg ul li.current{
+	border: 2px solid orange;
+}
+.wrapSmallImg ul li img{
+	width: 71px;
+	height: 71px;
+}
+
+.zoomLarge{
+	width: 420px;
+	height: 420px;
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 0;
+	left: 430px;
+	overflow: hidden;
+	display:none;
+}
+
+.zoomLarge img{
+	width: 750px;
+	height:750px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的留言</title>
+    <script src="/zwj/view/js/front/jquery-3.1.0.js"></script>
+    <style>
+        {literal}
+        ul{
+            margin:0;
+            padding:0;
+        }
+            ul>li{
+                list-style: none;
+                padding:0;
+                margin:0;
+                padding:13px 0;
+                border-bottom: 1px dashed #d3d3d3;
+            }
+
+        {/literal}
+    </style>
+    <script>
+        {literal}
+            $(function(){
+                $('.message_del').click(function(){
+
+                    var id=$(this).next().val();
+
+                    $.ajax({
+                        url:'/zwj/controller/front/message_delete.php',
+                        type:'get',
+                        datatype:'text',
+                        data:{id:id},
+                        success:function(data){
+                            alert('删除成功');
+                            window.location.reload();
+                        },
+
+                    });
+                });
+
+            });
+        {/literal}
+
+    </script>
+</head>
+<body>
+{nocache}
+<div style="width:950px;height:33px;line-height:33px;background: url('/zwj/view/images/front/bgbr_01.gif')">
+    <div style="width:80px;height:33px;line-height:33px;background: url('/zwj/view/images/front/span.png');text-align:center;color:white;">我要留言</div>
+
+</div>
+<ul>{if $messagedata}
+    {foreach $messagedata as $v}
+        <li><span style="float:left;width:800px;">标题：{$v.title}({$v.add_time|date_format:'%Y-%m-%d %H:%M:%S'})</span><a href="javascript:void(0);" class="message_del" style="float:right;width:80px;display: block;font-size:14px;" >删除</a><input
+                type="hidden" value="{$v.id}">
+        <div class="clear" style="clear:both;"></div>
+            <span>内容：{$v.content}</span>
+        </li>
+    {/foreach}
+    {/if}
+</ul>
+{/nocache}
+</body>
+</html>

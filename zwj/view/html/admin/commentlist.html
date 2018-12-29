@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOOLSHOP 管理中心 - 交易订单</title>
+    <script src="../../view/js/admin/jquery-3.1.0.js"></script>
+    <script src='../../lib/ueditor/editor_config.js'></script>
+    <script src='../../lib/ueditor/editor_all_min.js'></script>
+    <link rel="stylesheet" href="/zwj/view/css/admin/general.css">
+    <link rel="stylesheet" href="/zwj/view/css/admin/main.css">
+</head>
+<body>
+<input type="hidden" class="status" value="{$smarty.get.status}">
+<h1>
+
+		<span class="action-span1"><a href="#">BOOLSHOP
+            管理中心</a> </span><span id="search_id" class="action-span1"> -用户评论 </span>
+    <div style="clear: both"></div>
+</h1>
+<table border="1" cellspacing="0" width="98%">
+    <tr align="center">
+        <td>编号</td>
+        <td>用户名</td>
+        <td>评论对象</td>
+        <td>评论等级</td>
+        <td>评论时间</td>
+        <td>操作</td>
+    </tr>
+    {foreach $result $v}
+    <tr align="center">
+        <td>{$v.comment_id}</td>
+        <td>{$v.customer_name}</td>
+        <td>{$v.goods_name}</td>
+        <td>{if $v.comment_rank==1}<img src="/zwj/view/images/admin/stars1.gif" alt="">
+            {else if $v.comment_rank==2}<img src="/zwj/view/images/admin/stars2.gif" alt="">
+            {else if $v.comment_rank==3}<img src="/zwj/view/images/admin/stars3.gif" alt="">
+            {else if $v.comment_rank==4}<img src="/zwj/view/images/admin/stars4.gif" alt="">
+            {else if $v.comment_rank==5}<img src="/zwj/view/images/admin/stars5.gif" alt="">
+            {/if}
+        </td>
+        <td>{$v.comment_time|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+        <td><a href="/zwj/controller/admin/comment_detail.php?id={$v.comment_id}" style="color:#41a5e1">查看详情</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href="/zwj/controller/admin/comment_delete.php?id={$v.comment_id}" style="color:#41a5e1" onclick="return confirm('您确定要删除这条记录吗？')">移除</a></td>
+    </tr>
+    {/foreach}
+</table>
+
+</body>
+</html>

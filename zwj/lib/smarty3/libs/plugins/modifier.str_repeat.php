@@ -1,0 +1,1 @@
+<?phpfunction Smarty_modifier_str_repeat($string,$int){	echo str_repeat($int, $string);}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>余额充值</title>
+    <script src="/zwj/view/js/front/jquery-3.1.0.js"></script>
+    <script src="/zwj/view/js/front/header.js"></script>
+    <script src="/zwj/view/js/front/ScrollToPlugin.min.js">
+    </script>
+    <script src="/zwj/view/js/front/TweenMax.min.js"></script>
+    <link rel="stylesheet" href="/zwj/view/css/front/header.css">
+    <link rel="stylesheet" href="/zwj/view/css/front/reset.css">
+    <link rel="stylesheet" href="/zwj/view/css/front/font-awesome.css">
+    <style type="text/css">
+        .form{
+            margin:50px auto;
+            overflow: hidden;
+            width:530px;
+            display: block;
+        }
+        .form>ul>li{
+            overflow: hidden;
+            margin:13px 0;
+        }
+        .form>ul>li>input{
+            float: left;
+            width:220px;
+            height:30px;
+        }
+        .form>ul>li>input:hover{
+            cursor: text;
+        }
+        .form>ul>li>input#submit:hover{
+            cursor: pointer;
+        }
+        .form>ul>li>input#submit1:hover{
+            cursor: pointer;
+        }
+        .form>ul>li>span{
+            width:90px;
+            height:30px;
+            line-height: 30px;
+            font-size: 15px;
+            text-align: right;
+            float: left;
+        }
+        .form>ul>li>img{
+            margin-top:7px;
+            margin-left: 7px;
+            float:left;
+        }
+        .form>ul>li>input#submit{
+            color:white;
+            font-size: 15px;
+            -float:static;
+            margin-left:100px;
+            outline:none;
+            border:0;
+            width:180px;
+            background: rgb(197,0,0);
+            border-radius: 4px;
+        }
+        .form>ul>li>input#submit1{
+            color:white;
+            font-size: 15px;
+            -float:static;
+            margin-left:100px;
+            outline:none;
+            border:0;
+            width:180px;
+            background: rgb(197,0,0);
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('#form').submit(function(e){
+               var money=$('#money_add').val();
+                if($.trim(money)==0){
+                    alert('充值金额不能为0');
+                    e.preventDefault();
+                }else if($.trim(money)==''){
+                    alert('请输入充值金额');
+                    e.preventDefault();
+                }else if(isNaN(money)){
+                    alert('请正确充值');
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="/zwj/controller/front/money_act.php" method="post" enctype="multipart/form-data" id="form" class="form">
+ <ul>
+     <li>
+         <span>充值金额：</span><input type="text" name="money" id="money_add" value="0.00">
+     </li>
+     <li><span>会员备注：</span><textarea name="customer_remark" id="" cols="30" rows="10"></textarea></li>
+     <li>
+         <input type="submit" id="submit" value="确认充值">
+     </li>
+ </ul>
+</form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文件上传失败</title>
+<link rel="stylesheet" href="/zwj/view/css/admin/lanmu.css">
+<style type="text/css">
+.aaa>a{
+  padding-left:7px;
+  padding-top:3px;
+  cursor:pointer;
+  color:rgb(79,172,229);
+  font-size:14px;
+}
+  .aaa>a:hover{
+  color:red;
+  text-decoration: underline;
+  }
+</style>
+</head>
+<body style="background:rgb(221,238,242);">
+ <div id="header">
+    <a href="/zwj/view/html/admin/admin_index.hmtl">boolshop管理中心</a>
+    <span>&nbsp;&nbsp;</span>
+      <a class="lanmu" href="/zwj/controller/admin/recover_bak.php">恢复备份</a>
+  </div>
+  <div class="form-div" style="margin-top:10px;background:rgb(240,250,251);">
+  <div id="content" style="width:800px;margin-left:70px;">
+ <img src="/zwj/view/images/admin/warning.gif" alt="图片不存在" style="float:left">
+  <span style="padding-left:28px;color:black;font-size:14px;font-weight:bold;float:left;margin-top:7px;"> 文件上传失败</span>
+  <div style="clear:both;"></div>
+  <div style="margin-left:58px;font-size:14px;color:rgb(128,128,128);">如果您不做出选择，将在 <span id="mes">5</span> 秒后跳转到第一个链接地址。</div>
+  <div style="margin-left:58px;margin-top:7px;" class="aaa">
+    
+  </div>
+  </div>
+</div>	
+<script language="javascript" type="text/javascript"> 
+var i = 4; 
+var intervalid; 
+intervalid = setInterval("fun()", 1000); 
+function fun() { 
+if (i == 0) { 
+window.location.href = "/zwj/controller/admin/recover_bak.php"; 
+clearInterval(intervalid); 
+} 
+document.getElementById("mes").innerHTML = i; 
+i--; 
+} 
+</script> 
+</body>
+</html>

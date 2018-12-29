@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录页面</title>
+    <script src="/zwj/view/js/admin/jquery-3.1.0.js"></script>
+    <style>
+        #submit{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="background:url('/zwj/view/images/admin/admin_bk.jpg')">
+<form action="/zwj/controller/admin/admin_loingact.php" id="form" method="post">
+    <input type="text" id="username1" name="username" style="background-color:transparent;color:white;width:200px;height:38px;border:0;outline:0;padding:0;position:relative;left:388px;top:267px;" autofocus>
+    <input type="password" id="password1" name="password" style="background-color:transparent;color:white;width:200px;height:38px;border:0;outline:0;padding:0;position:relative;left:632px;top:267px;">
+    <input type="text" id="captcha1" name="captcha" style="background-color:transparent;color:white;width:100px;height:38px;border:0;outline:0;padding:0;position:relative;left:170px;top:404px;" placeholder="请输入验证码">
+    <img id="captcha" style="width:100px;height:37px;position:absolute;top:412px;left:480px;" src="/zwj/controller/front/captcha1.php" alt="captcha" onclick="this.src='/zwj/controller/front/captcha1.php?'+Math.random()">
+    <input id="submit" type="submit" value="" style="background-color:transparent;width:100px;height:40px;position: absolute;top:409px;left:700px;border:0;outline:0;">
+</form>
+<script>
+    $('#form').submit(function(e){
+       var username1= $.trim($('#username1').val());
+        var password1= $.trim($('#password1').val());
+        var captcha1= $.trim($('#captcha1').val());
+        if(username1==''){
+            alert('用户名不能为空');
+            e.preventDefault();
+        }else if(password1==""){
+            alert('密码不能为空');
+            e.preventDefault();
+        }else if(captcha1==""){
+            alert('验证码不能为空');
+            e.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>

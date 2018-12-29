@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>栏目列表</title>
+<link rel="stylesheet" href="/zwj/view/css/admin/lanmu.css">
+<script src="/zwj/view/js/admin/jquery-3.1.0.js"></script>
+<script>
+  $(function(){
+        $('#form1').submit(function(e){
+          e.preventDefault();
+          $('#sql_result').html("");
+          $('#table').html("");
+              $.ajax({
+            type: "POST",
+                       url: "/zwj/controller/admin//sql_act.php",
+                       dataType: "text",
+                        data: {sql:$("#sql").val()},
+                        success: function(data){
+                          
+                             if(data=='SQL语句有误!'){
+                                  $('#sql_result').html(data);
+                             }else if(data=="SQL语句成功执行"){
+                                 $('#sql_result').html(data);
+                             }else{
+                                      $('#sql_result').hide();
+                                      $('#table').append(data);
+                                     
+                             }
+                      
+                        }
+            });
+              
+        });
+  });
+</script>
+</head>
+<body style="background:rgb(221,238,242);">
+  <div id="header">
+    <a href="#">洁立康管理中心</a>
+    <span>-SQL查询</span>
+  </div>
+<form action="#" method="post" id="form1">
+  <div style="text-align:center;width:514px;color:rgb(162,172,175);">运行SQL查询</div>
+  <div style="color:red;font-size:16px;font-weight:bold;">执行SQL将直接操作数据库，请谨慎使用</div>
+  <textarea id="sql" cols="70" rows="7" name="sql"></textarea><br>
+  <input type="submit" value="提交查询">
+</form>
+<div id="sql_result" style="height:22px;line-height:22px;color:red;width:510px;text-align:right;"></div>
+<div id="table"></div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BOOLSHOP 管理中心 - 编辑商品分类 </title>
+    <link rel="stylesheet" href="../../view/css/admin/general.css">
+    <link rel="stylesheet" href="../../view/css/admin/main.css">
+    <script src="../../view/js/admin/jquery-3.1.0.js"></script>
+     <script type="text/javascript">
+    {literal}
+        $(function(){
+          $('#cat_name').focus();
+          $('#cat_name').focus(function(){
+              $(this).css('outline','0');
+          });
+          $('#cat_name').blur(function(e){
+           $('.main-div').click(function(){
+              var reg=/^.+$/;
+                var cat_name=$.trim($('#cat_name').val());
+               if(reg.test(cat_name)){
+                
+                
+               }else{
+                 $('#cat_name').css('border','1px solid red');
+                   $('#cat_name').next().hide();
+                   $('#cat_name').next().next().html('-商品分类不能为空！');
+                   $('#cat_name').next().next().show();
+                   e.preventDefault();
+               }
+            });
+          });
+            $('#form').submit(function(e){
+                var reg=/^.+$/;
+                var cat_name=$.trim($('#cat_name').val());
+               if(reg.test(cat_name)){
+                $.ajax({
+                  url:'cateaddreg.php',
+                  type:'POST',
+                  dataType:'text',
+                  async:false,
+                  crossDomain: true == !(document.all),
+                  data:{'cat_name':$('#cat_name').val(),
+                   'ori_cat_name':$('#ori_cat_name').val(),
+                   'parent_id':$('#parent_id').val()  
+                },
+                  success:function(data){
+                        if(data=="true"){
+                           e.preventDefault();
+                           alert('该分类下的子分类已存在！');
+                           
+                        }else{
+                           //alert('商品分类添加成功');
+                        }
+                    }
+                });
+               }else{
+                   alert('商品分类不能为空！');
+                   $('#cat_name').focus();
+                   e.preventDefault();
+               }
+            });
+        });
+{/literal}
+    </script>
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="catelist.php">商品分类</a></span>
+<span class="action-span1"><a href="#">BOOLSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 编辑商品分类 </span>
+<div style="clear:both"></div>
+</h1>
+
+<div class="main-div">
+  <form action="cateditAct.php" method="post" name="theForm" enctype="multipart/form-data" id="form">
+  <table width="100%" id="general-table">
+      <tr>
+        <td class="label">分类名称:</td>
+        <td>
+          <input type='text' name='cat_name' maxlength="20" value="{$catinfo.cat_name}" size='27' id="cat_name"/> <font color="red" style="font-size:16px;">*</font>
+          <span style="color:red;display:none;">-分类名称不能为空!</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">上级分类:</td>
+        <td>
+          <select name="parent_id" id="parent_id">
+                        <option value="0">顶级分类</option>
+                    {foreach $catlist as $v}
+                        {if $v.cat_id==$catinfo.parent_id}
+                        <option value="{$v.cat_id}" selected="selected">
+                          {$v.lev|str_repeat:"&nbsp;&nbsp;"}
+                          {$v.cat_name}
+                         </option>
+                        {else}
+                       
+                          <option value="{$v.cat_id}" >
+                          {$v.lev|str_repeat:"&nbsp;&nbsp;"}
+                          {$v.cat_name}</option>
+                        {/if}
+                    {/foreach}
+                       
+                      </select>
+        </td>
+      </tr>
+       <tr>
+        <td class="label">数量单位:</td>
+        <td>
+          <input type='text' name='measure_unit' value="{$catinfo.measure_unit}" maxlength="20" value='' size='27' /> 
+        </td>
+      </tr>
+       <tr>
+        <td class="label">排序:</td>
+        <td>
+          <input type='text'  value="{$catinfo.sort_order}" name='sort_order' maxlength="20" value='' size='27' />
+        </td>
+      </tr>
+      <tr>
+        <td class="label">是否显示:</td>
+        {if $catinfo.is_show==1}
+        <td>
+            <input type='radio' name='is_show' value="1" checked="checked"/><span>是</span>
+            <input type='radio' name='is_show' value="0"/><span>否</span>
+        </td>
+        {else}
+        <td>
+            <input type='radio' name='is_show' value="1" /><span>是</span>
+            <input type='radio' name='is_show' value="0" checked="checked"/><span>否</span>
+        </td>
+        {/if}
+      </tr>
+       <tr>
+        <td class="label">是否显示在导航栏:</td>
+         {if $catinfo.show_in_nav==1}
+        <td>
+            <input type='radio' name='show_in_nav' value="1" checked="checked"/><span>是</span>
+            <input type='radio' name='show_in_nav' value="0" /><span>否</span>
+        </td>
+        {else}
+        <td>
+            <input type='radio' name='show_in_nav' value="1" /><span>是</span>
+            <input type='radio' name='show_in_nav' value="0" checked="checked"/><span>否</span>
+        </td>
+        {/if}
+      </tr>
+      <tr>
+        <td class="label">关键字:</td>
+        <td>
+            <input type='input' name='keywords' value="{$catinfo.keywords}"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">栏目简介:</td>
+        <td>
+          <textarea name='cat_desc' rows="6" cols="48">{$catinfo.cat_desc}</textarea>
+        </td>
+      </tr>
+      </table>
+      <div class="button-div">
+        <input type="hidden" value="{$catinfo.cat_name}" name="ori_cat_name" id="ori_cat_name">
+        <input type="submit" value=" 确定 " />
+        <input type="reset" value=" 重置 " />
+      </div>
+    <input type="hidden" name="cat_id" value="{$catinfo.cat_id}" />
+  </form>
+</div>
+
+<div id="footer">
+共执行 3 个查询，用时 0.021687 秒，Gzip 已禁用，内存占用 2.081 MB<br />
+版权所有 &copy; 2005-2010 上海商派网络科技有限公司，并保留所有权利。</div>
+
+</body>
+</html>

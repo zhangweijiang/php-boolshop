@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>boolshop-登陆界面</title>
+	<script src="/zwj/view/js/front/jquery-3.1.0.js"></script>
+	<style type="text/css">
+	*{
+			font-family: '微软雅黑';
+	}
+		#header{
+			margin-left: 70px;
+			overflow: hidden;
+		}
+		#content{
+			background: url('/zwj/view/images/front/登陆背景图.jpg');
+			height:600px;
+			overflow: hidden;
+			position: relative;
+		}
+		#content:hover{
+			cursor:pointer;
+		}
+		#login{
+			width:350px;
+			height: 400px;
+			background: white;
+			position: absolute;
+			overflow: hidden;
+			top:100px;
+			left:850px;
+			z-index:1;
+		}
+		#login:hover{
+			cursor: auto;
+		}
+		p{
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			margin-left: 23px;
+			margin-bottom: 24px;
+		}
+		p.p_first{
+			
+			margin-top: 55px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		p.p_notice{
+			display: none;
+			width:305px;
+			background: rgb(254,242,242);
+			margin-top: 55px;
+			font-size: 14px;
+			margin-bottom: 13px;
+			
+		
+			
+		}
+		p>img{
+			float:left;
+			border:1px solid rgb(169,169,169);
+			border-right:0;
+			background-color:rgb(221,221,221);
+
+		}
+		p.p_notice>img{
+			float:left;
+			background: rgb(254,242,242);
+			border:0px;
+		}
+		p.p_notice>span{
+			color:rgb(108,108,108);
+		}
+		p.p_notice>span>a{
+			text-decoration: none;
+			color:red;
+		}
+		p>input{
+			padding:0;
+			float:left;
+			width:260px;
+			height:38px;
+		}
+		p>a{
+			text-decoration:none;
+			font-size:14px;
+			color:rgb(108,108,108);
+		}
+		p>a:hover{
+			color:rgb(196,0,0);
+		}
+		p>a#a_first{
+			margin-left:180px;
+			
+		}
+		input#submit{
+			width:303px;
+			background:rgb(196,0,0);
+			border:0;
+			outline:0;
+			border-radius:3px;
+			color:white;
+			font-weight:bold;
+			font-size:16px;
+		}
+		input#submit:hover{
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			$('#content').click(function(){
+				window.location.href="https://pages.tmall.com/wow/act/16566/gqfdj?spm=a2240.7829288.0.0.mlNdfR&abbucket=&acm=lb-zebra-143321-550949.1003.8.1137468&aldid=1137468&abtest=&scm=1003.8.lb-zebra-143321-550949.ITEM_1475863553928_1137468&pos=1";
+			});
+			$('#login').click(function(e){
+				e.stopPropagation();
+			});
+			$('#form').submit(function(e){
+				var username_reg=/^(([a-zA-Z]|[\u4E00-\u9FA5]){1}([a-zA-Z0-9]|[\u4E00-\u9FA5]|[_]){1,20})|([1][345789]\d{9})$/;
+				 var reg=/^.+$/;
+                var username=$.trim($('#username').val());
+                var password=$.trim($('#password').val());
+                if(!reg.test(username)){
+                	if(!reg.test(password)){
+                		e.preventDefault();
+                		$('p.p_first').hide();
+                		$('p.name_pwd').show().siblings('p.p_notice').hide();
+                	}else{
+                		e.preventDefault();
+                		$('p.p_first').hide();
+                		$('p.username').show().siblings('p.p_notice').hide();
+                	}        
+                }else if(!username_reg.test(username)){
+
+                	e.preventDefault();
+                	$('p.p_first').hide();
+                	$('p.username_reg_error').show().siblings('p.p_notice').hide();
+
+                }else if(!reg.test(password)){
+                	e.preventDefault();
+                	$('p.p_first').hide();
+                	$('p.password').show().siblings('p.p_notice').hide();
+                }else{
+                		e.preventDefault();
+                		$.ajax({
+	                    url:'loginAct.php',
+	                    type:'POST',
+	                    dataType:'text',
+	                    async:false,
+	                    crossDomain: true == !(document.all),
+	                    data:{"username":username,
+	                          "password":password
+	                     	  },
+	                     success:function(data){
+	                     	if(data=="true"){
+	                     		
+	                     		window.location.href="/index.php";
+	                     	}else{
+	                     		e.preventDefault();
+	                     		$('#password').val("");
+	                     		$('p.p_first').hide();
+	                     		$('p.uncorrect').show().siblings('p.p_notice').hide();
+	                     	}
+	                  	}
+                	});
+                }
+			});
+		});
+	</script>
+</head>
+<body>
+		<div id="header">
+			<img src="/zwj/view/images/front/布尔商城.png" alt="布尔商城"/>
+		</div>
+		<div id="content">
+			<form action="#" method="post" enctype="multipart/form-data" id="form" >
+			<div id="login">
+				<p class="p_first">密码登录</p>
+				<p class="p_notice uncorrect">
+					<img src="/zwj/view/images/front/错误.png" alt="错误" >
+					<span>&nbsp;&nbsp;你输入的密码和账户名不匹配，是否<a href="#">忘记密 &nbsp;&nbsp;码</a>或<a href="#">忘记会员名</a></span>
+				</p>
+				<p class="p_notice username">
+					<img src="/zwj/view/images/front/错误.png" alt="错误" >
+					<span>请输入账户名</span>
+				</p>
+				<p class="p_notice username_reg_error">
+					<img src="/zwj/view/images/front/错误.png" alt="错误" >
+					<span>账户名格式输入不正确</span>
+				</p>
+				<p class="p_notice password">
+					<img src="/zwj/view/images/front/错误.png" alt="错误" >
+					<span>请输入密码</span>
+				</p>
+				<p class="p_notice name_pwd">
+					<img src="/zwj/view/images/front/错误.png" alt="错误" >
+					<span>请输入账户名和密码</span>
+				</p>
+				<p><img src="/zwj/view/images/front/用户.png" alt="用户" ><input class="text" type="text" placeholder="&nbsp;&nbsp;手机号/会员名" name="username" id="username">
+				</p>
+				<p><img src="/zwj/view/images/front/密码.png" alt="密码" ><input type="password" name="password" id="password">
+				</p>
+				<p ><input type="submit" value="登录"  id="submit" ></p>
+				<p>
+					<a id="a_first" href="pwd_edit.php">忘记密码</a>&nbsp;
+					<a href="register.php">免费注册</a>
+				</p>
+			</div>
+			</form>
+		</div>
+</body>
+</html>

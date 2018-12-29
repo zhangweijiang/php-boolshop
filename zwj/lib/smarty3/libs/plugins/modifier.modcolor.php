@@ -1,0 +1,1 @@
+<?phpfunction Smarty_modifier_modcolor($string,$color){	return '<font color="'.$color.'">'.$string.'</font>';}

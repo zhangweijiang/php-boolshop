@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用户列表</title>
+<link rel="stylesheet" href="/jlk/css/lanmu.css">
+<script src="/jlk/js/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+$(function(){
+$('.delete').click(function(e){
+      if(confirm('您确实要删除该商品吗?')){
+
+      }else{
+        e.preventDefault();
+      }
+    });
+    $('.lanmu').click(function(e){
+     parent.location.href="/jlk/register.php";
+        e.preventDefault();
+    })
+});
+</script>
+<style>
+  a.user_no{
+    color:blue;
+  }
+  a.user_yes{
+    color:red;
+  }
+  a.user_no:hover{
+    text-decoration: underline;
+  }
+    a.user_yes:hover{
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body >
+  <div id="header">
+    <a href="/jlk/admin_index.hmtl">boolshop管理中心</a>
+    <span>-用户列表</span>
+
+  </div>
+  <div style="margin-top:11px;">
+  <table width="100%" border="1" cellspacing="0">
+      <tr >
+          <th style="width:10%;background:rgb(187,221,229);">序号</th>
+          <th style="width:10%;background:rgb(187,221,229)">用户名</th>
+          <th style="width:20%;background:rgb(187,221,229)">email</th>
+           <th style="width:20%;background:rgb(187,221,229)">电话</th>
+              <th style="width:20%;background:rgb(187,221,229)">操作</th>
+      </tr>
+      <?php if($result!==false){ foreach($result as $k=>$v){?>
+          <tr >
+          <td style="width:10%;text-align:center;"><?php echo $v['customer_id']; ?></td>
+          <td style="width:10%;text-align:center;"><?php echo $v['customer_name']; ?></td>
+          <td style="width:20%;text-align:center;"><?php  echo $v['email']; ?></td>
+           <td style="width:20%;text-align:center;"><?php  echo $v['telephone']; ?></td>
+          <td style="width:10%;text-align:center;">
+              <a href="/zwj/controller/admin/user_edit.php?id=<?php echo $v['customer_id']?>"  title="编辑" ><img src="/zwj/view/images/admin/icon_edit.gif" width="20" height="20" border="0" /></a>
+                 <a href="/zwj/controller/admin/user_delete.php?id=<?php echo $v['customer_id']?>"  title="删除" class="delete"><img src="/zwj/view/images/admin/icon_trash.gif" width="20" height="20" border="0" /></a>
+          </td>
+       </tr>
+    <?php } }?>
+  
+</table>
+</div>
+</body>
+</html>

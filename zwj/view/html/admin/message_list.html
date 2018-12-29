@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>栏目列表</title>
+<link rel="stylesheet" href="/zwj/view/css/admin/lanmu.css">
+<script src="/zwj/view/js/admin/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+$(function(){
+$('.delete').click(function(e){
+      if(confirm('您确实要删除该商品吗?')){
+
+      }else{
+        e.preventDefault();
+      }
+    });
+});
+</script>
+<style type="text/css">
+a.delete{
+color:black;font-size:15px;font-weight:lighter;
+}
+  a.delete:hover{
+    color:green;
+  }
+  a.untreat{
+    color:red;
+  }
+    a.untreat:hover{
+    color:green;
+  }
+</style>
+</head>
+<body >
+  <div id="header">
+    <a href="/zwj/view/html/admin/admin_index.hmtl">boolshop管理中心</a>
+    <span>-留言列表</span>
+    <a class="lanmu" href="/zwj/controller/admin/untreated_message.php" style="margin-left:650px;">未处理留言</a>
+  </div>
+  <div style="margin-top:11px;">
+  <table width="100%" border="1" cellspacing="0">
+      <tr >
+          <th style="width:7%;background:rgb(187,221,229);">留言序号</th>
+          <th style="width:10%;background:rgb(187,221,229)">留言标题</th>
+          <th style="width:10%;background:rgb(187,221,229)">姓名</th>
+          <th style="width:10%;background:rgb(187,221,229)">电话</th>
+          <th style="width:15%;background:rgb(187,221,229)">email</th>
+          <th style="width:30%;background:rgb(187,221,229)">留言内容</th>
+          <th style="width:10%;background:rgb(187,221,229)">处理状态</th>
+          <th style="width:10%;background:rgb(187,221,229)">操作</th>
+      </tr>
+      <?php if($result!==false){ foreach($result as $k=>$v){?>
+          <tr >
+          <td style="width:7%;"><?php echo $v['id']; ?></td>
+          <td style="width:10%;"><?php echo $v['title']; ?></td>
+          <td style="width:10%;"><?php  echo $v['customer_name']; ?></td>
+          <td style="width:10%;"><?php  echo $v['telephone']; ?></td>
+          <td style="width:15%;"><?php  echo $v['email']; ?></td>
+          <td style="width:30%;"><?php  echo $v['content']; ?></td>
+          <td style="width:10%;text-align:center;">
+                  <?php if($v['is_read']==1){?><span>已处理</span>
+                  <?php }else{?> <a href="/zwj/controller/admin/message_list_deal.php?id=<?php echo $v['id'];?>" class="untreat">未处理</a>
+                  <?php }?>
+          </td>
+          <th style="width:10%;"><a href="/zwj/controller/admin/message_delete.php?id=<?php echo $v['id'];?>"  class="delete">删除</a></th>
+       </tr>
+    <?php } }?>
+  
+</table>
+</div>
+</body>
+</html>

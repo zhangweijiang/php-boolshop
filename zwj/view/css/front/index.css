@@ -1,0 +1,256 @@
+
+.content{
+	margin-left:45px;
+	margin-right: 40px;
+	border:1px solid transparent;
+	overflow: hidden;
+	width:1220px;
+}
+div.content>.cate_info{
+	float:left;
+	width:200px;
+	border:1px solid transparent;
+}
+div.content>.wrap{
+	float:left;
+	width:900px;
+	height: 490px;
+	position:relative;
+	overflow: hidden;
+}
+.wrap>ul{
+	width: 4500px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.wrap>ul>li{
+	float: left;
+	width: 900px;
+}
+.wrap>ol{
+	position: absolute;
+	bottom: 10px;
+	left: 330px;
+}
+.wrap>ol>li{
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-right: 16px;
+	cursor: pointer;
+}
+.wrap>div.prev{
+	position: absolute;
+	top:195px;
+	left:0;
+	cursor:pointer;
+}
+.wrap>div.next{
+	position: absolute;
+	top:195px;
+	right:0;
+	cursor:pointer;
+}
+div.cate_info>ul {
+	background: rgb(83,85,86);
+	color:white;
+}
+div.cate_info>ul>li{
+	padding-left: 30px;
+	list-style-type: none;
+	font-size: 16px;
+	padding-top:14.8px;
+	padding-bottom:10px;
+	position: relative;
+}
+div.cate_info>ul>li:hover{
+	background: rgb(31,152,255);
+	cursor:pointer;	
+}
+div.cate_info>ul>li>i{
+	position: absolute;
+	right:33px;
+}
+div.content>div.login_right{
+	width:112px;
+	height:490px;
+	float:left;
+	background-color: rgba(0,0,0,.4);
+}
+div.login_right>ul>li>a{
+	color:white;
+}
+div.login_right>ul>li{
+		padding:5px 5px;
+		width:60px;
+		margin-left:30px;
+}
+div.login_right>ul>li>a:hover{
+	text-decoration: underline;
+}
+div.login_right>ul>li.hello a:hover{
+		cursor:text;		
+}
+div.login_right>div.huodong{
+	color:white;
+	text-align: center;
+	margin:18px auto 13px 0;
+	background: rgb(99,99,99);
+	opacity:.5;
+}
+div.login_right>.guanggao{
+	display: block;
+	width: 60px;
+	height:60px;
+	margin:0 auto;
+	border-radius:33px;
+	overflow: hidden;
+	background: url(/zwj/view/images/front/广告.jpg) no-repeat;
+}
+.is_new{
+	margin-top: 13px;
+	width:1213px;
+	margin-left:46px;
+	border:1px solid rgb(183,183,183);
+	overflow: hidden;
+}
+div.is_new_head{
+	overflow: hidden;
+}
+div.is_new_head>img{
+	display: block;
+	float:left;
+}
+div.is_new_head>.click{
+	display: block;
+	float:right;
+	margin-top:33px;
+	margin-right: 13px;
+}
+div.is_new_head>.click>a:hover{
+	cursor: pointer;
+}
+div.is_new_content_left{
+	margin-top: 14px;
+	width:200px;
+	height: 576px;
+	border:1px solid rgb(128,128,128);
+	float:left;
+	margin-left: 7px;
+	margin-bottom: 7px;
+}
+div.is_new_content_right{
+	width:1003px;
+	float:left;
+
+}
+div.is_new_content_right>ul{
+	margin-top: 6px;
+	margin-left: 16px;
+	margin-bottom: 7px;
+	overflow: hidden;
+}
+div.is_new_content_right>ul>li{
+	margin-top: 7px;
+	border:1px solid gray;
+	height:280px;
+	width:230px;
+	float:left;
+	margin-right: 14px;
+	margin-bottom: 7px;
+	overflow: hidden;
+	
+
+}
+div.is_new_content_right>ul>li:hover,div.goods_all>ul>li:hover{
+	cursor:pointer;
+	border:1px solid red;
+}
+div.is_new_content_right>ul>li>a,div.goods_all>ul>li>a{
+	width:220px;
+	height:220px;
+	overflow: hidden;
+	display: block;
+	position:relative;
+	margin:3px auto 0 auto;
+}
+div.is_new_content_right>ul>li>a>img{
+	width:220px;
+	height:220px;
+	display: block;
+	position: absolute;
+	top:0;
+	left:0;
+}
+div.is_new_content_right>ul>li .goods_name,div.goods_all>ul>li .goods_name{
+	width:220px;
+	height:20px;
+	margin: 3px auto;
+	overflow: hidden;
+	color:rgb(51,51,51);
+}
+div.is_new_content_right>ul>li .goods_name>a:hover{
+	text-decoration: underline;
+	color:red;
+}
+div.goods_all>ul>li .goods_name>a:hover{
+	text-decoration: underline;
+	color:red;
+}
+div.is_new_content_right>ul>li>.shop_price,div.goods_all>ul>li>.shop_price{
+	width:226px;
+	overflow: hidden;
+	color:red;
+	font-weight: bold;
+	font-size: 20px;
+
+}
+div.is_new_content_right>ul>li>.shop_price:hover{
+	cursor:text;
+}
+div.goods_all>ul>li>.shop_price:hover{
+	cursor:text;
+}
+div.is_new_content_right>ul>li>.shop_price>img{
+	margin-top:9px;
+	display: block;
+	float:left;
+}
+div.is_new_content_right>ul>li>.shop_price>span{
+		margin-top: 4px;
+		display: block;
+		float:left;
+}
+div.goods_all{
+	margin-top: 13px;
+	width:1213px;
+	margin-left:46px;
+	border:1px solid rgb(183,183,183);
+	overflow: hidden;
+}
+div.goods_all>ul{
+	margin-left: 7px;
+}
+div.goods_all>ul>li{
+	margin-top: 7px;
+	border:1px solid gray;
+	height:280px;
+	width:230px;
+	float:left;
+	margin-right: 9px;
+	margin-bottom: 7px;
+	overflow: hidden;
+}
+
+.category_son{
+	display: block;
+	float:left;
+	height:40px;
+	line-height:40px;
+	text-align: center;
+	background-color: white;
+	margin-right: 11px;
+	padding:0 13px;
+}
+

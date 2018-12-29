@@ -1,0 +1,325 @@
+/* 小火箭css */
+	#gotop1 {
+	    width: 60px;
+	    position: fixed;
+	    bottom: 20px;
+	    cursor: pointer;
+	    z-index: -1;
+	    right: 4%;
+	    opacity:0.3;
+	}
+	#gotop1 img{
+		-display: block;
+		width:50px;
+		height: 75px;
+	}
+	/* 小火箭悬停特效 */
+		 #gotop1:hover {
+		 	  opacity:1;
+		    animation: rubberBand 1s;
+		   
+		} 
+
+		@keyframes rubberBand {
+		  from {
+		    transform: scale3d(1, 1, 1);
+		  }
+
+		  30% {
+		    transform: scale3d(1.25, 0.75, 1);
+		  }
+
+		  40% {
+		    transform: scale3d(0.75, 1.25, 1);
+		  }
+
+		  50% {
+		    transform: scale3d(1.15, 0.85, 1);
+		  }
+
+		  65% {
+		    transform: scale3d(.95, 1.05, 1);
+		  }
+
+		  75% {
+		    transform: scale3d(1.05, .95, 1);
+		  }
+
+		  to {
+		    transform: scale3d(1, 1, 1);
+		  }
+		}
+		/* end 小火箭 */
+
+
+/* start header头部 */
+		#header{
+			height:40px;
+			line-height: 40px;
+			background: rgb(242,242,242);
+
+		}
+		ul.header_left{
+			margin-left: 13px;
+		}
+		ul.nav>li{
+			color:rgb(144,144,144);
+			float:left;
+			list-style: none;
+			position: relative;
+		}
+		ul.nav>li.first{
+			margin-left:45px;
+		}
+		ul.nav>li.second{
+			margin-left:13px;
+		}
+		ul.nav>li>a{
+			color:rgb(144,144,144);
+			cursor:pointer;
+			padding:3px;
+		}
+		ul.nav>li>a:hover{
+			color:rgb(255,68,0);
+		
+		}
+		ul.nav>li>ul.nav_list{
+			position:absolute;
+			top:40px;
+			left:0px;
+			background: white;
+			display: none;
+		}
+		ul.nav>li>ul.nav_list>li{
+			width:73px;
+			padding: 0 7px;
+		}
+		.header_right>li>i.red{
+			color:rgb(196,0,0);
+		}
+		.header_right>li{
+			margin-right:15px;
+		}
+		.header_right {
+			border:1px solid transparent;
+			float: right;
+			margin-right:40px;
+		}
+		.logo{
+			overflow: hidden;
+			float:left;
+		}
+		.logo img{
+			width:300px;
+			height:60px;
+			margin-left:-16px;
+			display: inline-block;
+			margin-top: 9px;
+		}
+		#header_serach{
+			background: black;
+			opacity: .7;
+			position:fixed;
+			height:40px;
+			top:0;
+			left:0;
+			width:100%;
+			display: none;
+			z-index: 3;
+		}
+		.search{
+			float:left;
+			margin-left:200px;
+			margin-top:20px;
+
+		}
+		.clear{
+			clear:both;
+		}
+		.search input{
+			display: block;
+			float:left;
+			width:350px;
+			height:33px;
+			border-top:1px solid rgb(58,58,58);
+			border-bottom:1px solid rgb(58,58,58);
+			border-left:none;
+			font-size:16px;
+			outline:none;
+			cursor: text;
+		}
+		.search .search_icon{
+			float:left;
+			width:70px;
+			height:35px;
+			background: rgb(58,58,58);
+			cursor: pointer;
+		}
+		.search_icon i.fa-search{
+			line-height: 35px;
+			padding-left:25px;
+			color:white;
+			font-size:20px;
+		}
+		.search .search_type{
+			padding-left:17px;
+			float:left;
+			line-height:33px;
+			height:33px;
+			width:60px;
+			border-top:1px solid rgb(58,58,58);
+			border-bottom:1px solid rgb(58,58,58);
+			border-left:1px solid rgb(58,58,58);
+			position:relative;
+			cursor: pointer;
+			background: white;
+		}
+		.search .search_type_content{
+			position: absolute;
+			width:80px;
+			height:70px;
+			border:1px solid rgb(206,206,206);
+			border-top:1px solid transparent;
+			top:33px;
+			left:-1px;
+			display: none;
+			background: white;
+			z-index: 1;
+			
+		}
+		.search_type_content li{
+			text-align: center;
+			cursor:pointer;
+		}
+		#hot ul li{
+			float:left;
+			padding:7px;
+		}
+/* 		#bool{
+		border:1px solid red;
+} */
+
+/* end header头部 */
+
+/* start 可伸展的jQuery侧边栏固定浮动菜单 */
+.dice-menu {
+    padding: 0;
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index:2;
+
+}
+.dice-menu>li {
+	width:37px;
+    display: block;
+    background-color: rgb(57,57,57);
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+
+}
+
+.dice-menu>li.no:hover{
+	opacity: 1;
+}
+
+
+.dice-menu>li>span{
+	border-bottom:1px solid rgb(213,213,213);
+	width:15px;
+	margin-left:5px;
+	padding:5px 5px;
+	display: block;
+	text-align:center;
+}
+.dice-menu>li>span:first-child{
+	font-size: 18px;
+	border:none;
+}
+.dice-menu>li>i{
+	padding-top:10px;
+	padding-bottom: 10px;
+	font-size: 23px;
+	margin-left: 7px;
+	font-weight: lighter;
+}
+.dice-menu>li:first-child {
+	padding:6px 0;
+    opacity: .8;
+}  
+	/* start 自定义的图标 */
+	.triangle_border{
+		width:105px;
+		height:40px;
+		overflow:hidden;
+		position:absolute;
+		right:52px;
+		top:0px;
+		z-index: 10;
+		display: none;
+	}
+	.rectangle{
+		width:90px;
+		height:40px;
+		background-color:rgb(73,73,73);
+		line-height:40px;
+		text-align: center;
+		color:white;
+	}
+	.triangle{
+		width:0px;
+		height:0px;
+		border-top:7px solid transparent;
+		border-right:7px solid transparent;
+		border-bottom:7px solid transparent;
+		border-left:8px solid rgb(73,73,73);
+		position:absolute;
+		left:90px;
+		top:13px;
+	}
+	/* end 自定义的图标 */
+/* end 可伸展的jQuery侧边栏固定浮动菜单    */  
+
+/* start可伸展的jQuery侧边栏固定浮动菜单的内容 */ 
+.dice-menu-content{
+	width:300px;
+	height:100%;
+    position: fixed;
+    top: 0;
+    right:-300px;
+   	background: white;
+   	display: none;
+   	z-index:2;
+}
+.dice-menu-content-header{
+	background: rgb(57,57,57);
+	color:white;
+}
+.dice-menu-content i{
+	font-size: 20px;
+	padding:10px 13px;
+}
+.dice-menu-content i{
+	cursor: pointer;
+}
+.dice-menu-content span{
+	display: inline-block;
+	width:258px;
+	text-align: center;
+
+}
+/* end 可伸展的jQuery侧边栏固定浮动菜单的内容 */ 
+div.gouwuche_content span:hover{
+	cursor:default;
+}
+
+
+input.s:hover{
+	cursor:pointer;
+}
+.search_icon>input:hover{
+	cursor: pointer;
+}
+

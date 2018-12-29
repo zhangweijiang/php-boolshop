@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BOOLSHOP 管理中心 - 交易订单</title>
+	<script src="../../view/js/admin/jquery-3.1.0.js"></script>
+	<script src='../../lib/ueditor/editor_config.js'></script>
+	<script src='../../lib/ueditor/editor_all_min.js'></script>
+	<link rel="stylesheet" href="/zwj/view/css/admin/general.css">
+	<link rel="stylesheet" href="/zwj/view/css/admin/main.css">
+	<script>
+	{literal}
+	$(function(){
+	$('.tab-back').click(function(){
+			var index=$(this).index();
+			/*注意：以为百度编辑器也是一个table,所以为了区分要在三个table
+			(通用信息，详细描述，其他信息)上加上类名为a,否则得到的index(不是你想要的索引，不能实现你想要的效果*/
+			$('table.a').eq(index).show().siblings('table.a').hide();
+			$(this).css('background','#BBDDE5').siblings().css('background','none');
+			});
+	//取消订单
+	$('.cancel_order').click(function(){
+		var action_id=$(this).attr('action_id');
+		var url='/zwj/controller/admin/order_status.php?order_status=delete&action_id='+action_id;
+		$.ajax({
+			url:url,
+			type:'get',
+			success:function(data){
+				alert('成功取消订单');
+				window.location.href='/zwj/controller/admin/order.php?status=1';
+			}
+		});
+	});
+
+	$('.cancel_order1').click(function(){
+		var action_id=$(this).attr('action_id');
+		
+		var url='/zwj/controller/admin/order_status.php?order_status=delete&action_id='+action_id;
+		$.ajax({
+			url:url,
+			type:'get',
+			success:function(data){
+
+				alert('成功取消订单');
+				window.location.href='/zwj/controller/admin/order.php?status=0';
+			}
+		});
+	});
+
+		$('.delete_order1').click(function(){
+			var action_id=$(this).attr('action_id');
+
+			var url='/zwj/controller/admin/order_status.php?order_status=delete&action_id='+action_id;
+			$.ajax({
+				url:url,
+				type:'get',
+				success:function(data){
+
+					alert('成功删除订单');
+					window.location.href='/zwj/controller/front/myorder.php?status=0';
+				}
+			});
+		});
+
+	$('.fahuo').click(function(){
+		var action_id=$(this).attr('action_id');
+		var url='/zwj/controller/admin/order_status.php?order_status=set2&action_id='+action_id;
+		$.ajax({
+			url:url,
+			type:'get',
+			success:function(data){
+				alert('成功设置发货');
+				window.location.href='/zwj/controller/admin/order.php?status=2';
+			}
+		});
+	});
+	$('.fahuo1').click(function(){
+		var action_id=$(this).attr('action_id');
+		var url='/zwj/controller/admin/order_status.php?order_status=set2&action_id='+action_id;
+		$.ajax({
+			url:url,
+			type:'get',
+			success:function(data){
+				alert('成功设置发货');
+				window.location.href='/zwj/controller/admin/order.php?status=0';
+			}
+		});
+	});
+	var status=$('.status').val();
+	if(status=='0'){
+		$('.tab-back').eq(0).trigger('click');
+	}else if(status=='1'){
+		$('.tab-back').eq(1).trigger('click');
+	}else if(status=='2'){
+		$('.tab-back').eq(2).trigger('click');
+	}else if(status=='3'){
+		$('.tab-back').eq(3).trigger('click');
+	}
+});
+	{/literal}
+	</script>
+
+</head>
+<body>
+	<input type="hidden" class="status" value="{$smarty.get.status}">
+	<h1>
+		
+		<span class="action-span1"><a href="#">BOOLSHOP
+				管理中心</a> </span><span id="search_id" class="action-span1"> - 交易订单 </span>
+		<div style="clear: both"></div>
+	</h1>
+
+	<!-- start goods form -->
+	<div class="tab-div">
+		<!-- tab bar -->
+		<div id="tabbar-div">
+			<p>
+			<span class="tab-back" style="background:#BBDDE5">
+					所有订单</span> 
+					<span class="tab-back" >待付款</span>
+					 <span class="tab-back" >待发货</span>
+					 <span class="tab-back" >待收货</span>
+					<span class="tab-back" >已完成</span>
+			</p>
+		</div>
+	</div>
+	<!-- 交易订单表 -->
+		<table class="a" style="width:98%;">
+			<tr bgcolor="gray" style="height:30px;line-height:30px;">
+				<th>订单号</th>
+				<th>下单时间</th>
+				<th>收货人</th>
+				<th>总金额</th>
+				<th>应付金额</th>
+				<th>订单状态</th>
+				<th>&nbsp;操作&nbsp;</th>
+			</tr>
+			{foreach $order as $o}
+			
+			<tr align="center" style="height:50px;line-height:50px;">
+				<td style="border:1px solid #e8e8e8;">{$o.order_sn}</td>
+				<td style="border:1px solid #e8e8e8;">{$o.customer_name}<br>{$o.add_time|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+				<td style="border:1px solid #e8e8e8;">{$o.reciver}</td>
+				<td style="border:1px solid #e8e8e8;">{$o.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">{$o.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">{if $o.order_status==0}待付款{else if $o.order_status==1}待发货{else if $o.order_status==2}待收货{else}已收货{/if}</td>
+				<td style="border:1px solid #e8e8e8;">{if $o.order_status==0}<a href="javascript:void(0)" class="cancel_order1" action_id="{$o.action_id}" style="color:#0d6acb;">取消订单</a>{else if $o.order_status==1}<a href="javascript:void(0)" style="margin-bottom:9px;display:block;color:#0d6acb;" class="fahuo1" action_id="{$o.action_id}" >设置发货</a><a href="/zwj/controller/admin/order_detail.php?order_id={$o.order_id}" style="color:#0d6acb;">订单详情</a>{else if $o.order_status==2}<a href="" style="margin-bottom:9px;display:block;color:red;">待收货</a><a href="/zwj/controller/admin/order_detail.php?order_id={$o.order_id}" style="color:#0d6acb;">订单详情</a>{else}<span  style="margin-bottom:9px;display:block;">交易完成</span><a href="/zwj/controller/admin/order_detail.php?order_id={$o.order_id}" style="color:#0d6acb;">订单详情</a><br><a href="javascript:void(0);" style="color:#0d6acb;" class="delete_order1" action_id="{$o.action_id}">删除订单</a>{/if}</td>
+			</tr>
+			{/foreach}
+		</table>
+	<!-- 待付款表 -->
+		
+		<table class="a" style="display:none;width:98%;">
+			
+			<tr bgcolor="gray" style="height:30px;line-height:30px;">
+				<th>订单号</th>
+				<th>下单时间</th>
+				<th>收货人</th>
+				<th>总金额</th>
+				<th>应付金额</th>
+				<th>订单状态</th>
+				<th>&nbsp;操作&nbsp;</th>
+			</tr>
+			{foreach $order1 as $o1}
+			
+			<tr align="center" style="height:50px;line-height:50px;">
+				<td style="border:1px solid #e8e8e8;">{$o1.order_sn}</td>
+				<td style="border:1px solid #e8e8e8;">{$o1.customer_name}<br>{$o1.add_time|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+				<td style="border:1px solid #e8e8e8;">{$o1.reciver}</td>
+				<td style="border:1px solid #e8e8e8;">{$o1.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">{$o1.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">待付款</td>
+				<td style="border:1px solid #e8e8e8;"><a href="javascript:void()" class="cancel_order" action_id="{$o1.action_id}" style="color:#0d6acb;">取消订单</a></td>
+			</tr>
+			{/foreach}
+		</table>
+	<!-- 待发货表 -->
+		<table class="a" style="display:none;width:98%;">
+			<tr bgcolor="gray" style="height:30px;line-height:30px;">
+				<th>订单号</th>
+				<th>下单时间</th>
+				<th>收货人</th>
+				<th>总金额</th>
+				<th>应付金额</th>
+				<th>订单状态</th>
+				<th>&nbsp;操作&nbsp;</th>
+			</tr>
+			{foreach $order2 as $o2}
+			
+			<tr align="center" style="height:50px;line-height:50px;">
+				<td style="border:1px solid #e8e8e8;">{$o2.order_sn}</td>
+				<td style="border:1px solid #e8e8e8;">{$o2.customer_name}<br>{$o2.add_time|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+				<td style="border:1px solid #e8e8e8;">{$o2.reciver}</td>
+				<td style="border:1px solid #e8e8e8;">{$o2.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">{$o2.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">待发货</td>
+				<td style="border:1px solid #e8e8e8;"><a href="javascript:void()" style="margin-bottom:9px;display:block;color:#0d6acb;" class="fahuo" action_id="{$o2.action_id}" >设置发货</a><a href="/zwj/controller/admin/order_detail.php?order_id={$o2.order_id}" style="color:#0d6acb;">订单详情</a></td>
+			</tr>
+			{/foreach}
+		</table>
+	<!-- 待收货表 -->
+		<table class="a" style="display:none;width:98%;">
+			<tr bgcolor="gray" style="height:30px;line-height:30px;">
+				<th>订单号</th>
+				<th>下单时间</th>
+				<th>收货人</th>
+				<th>总金额</th>
+				<th>应付金额</th>
+				<th>订单状态</th>
+				<th>&nbsp;操作&nbsp;</th>
+			</tr>
+			{foreach $order3 as $o3}
+			
+			<tr align="center" style="height:50px;line-height:50px;">
+				<td style="border:1px solid #e8e8e8;">{$o3.order_sn}</td>
+				<td style="border:1px solid #e8e8e8;">{$o3.customer_name}<br>{$o3.add_time|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+				<td style="border:1px solid #e8e8e8;">{$o3.reciver}</td>
+				<td style="border:1px solid #e8e8e8;">{$o3.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">{$o3.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">待收货</td>
+				<td style="border:1px solid #e8e8e8;"><a href="" style="margin-bottom:9px;display:block;color:red;">待收货</a><a href="/zwj/controller/admin/order_detail.php?order_id={$o3.order_id}" style="color:#0d6acb;">订单详情</a></td>
+			</tr>
+			{/foreach}
+		</table>
+	<!-- 已完成表 -->
+		<table class="a" style="display:none;width:98%;">
+			<tr bgcolor="gray" style="height:30px;line-height:30px;">
+				<th>订单号</th>
+				<th>下单时间</th>
+				<th>收货人</th>
+				<th>总金额</th>
+				<th>应付金额</th>
+				<th>订单状态</th>
+				<th>&nbsp;操作&nbsp;</th>
+			</tr>
+			{foreach $order4 as $o4}
+			
+			<tr align="center" style="height:50px;line-height:50px;">
+				<td style="border:1px solid #e8e8e8;">{$o4.order_sn}</td>
+				<td style="border:1px solid #e8e8e8;">{$o4.customer_name}<br>{$o4.add_time|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+				<td style="border:1px solid #e8e8e8;">{$o4.reciver}</td>
+				<td style="border:1px solid #e8e8e8;">{$o4.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">{$o4.subtotal}</td>
+				<td style="border:1px solid #e8e8e8;">已收货</td>
+				<td style="border:1px solid #e8e8e8;"><span  style="margin-bottom:9px;display:block;">交易完成</span><a href="/zwj/controller/admin/order_detail.php?order_id={$o4.order_id}" style="color:#0d6acb;">订单详情</a><br><a href="javascript:void(0);" style="color:#0d6acb;" class="delete_order4" action_id="{$o.action_id}">删除订单</a></td>
+			</tr>
+			{/foreach}
+		</table>
+</body>
+</html>

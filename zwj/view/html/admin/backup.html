@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>栏目列表</title>
+<link rel="stylesheet" href="/zwj/view/css/admin/lanmu.css">
+<script src="/zwj/view/js/admin/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.submit').click(function(){
+			$('.loading').show();
+		});
+	});
+</script>
+</head>
+<body style="background:rgb(221,238,242);">
+  <div id="header">
+    <a href="/zwj/view/html/admin/admin_index.html">boolshop管理中心</a>
+    <span>-数据备份</span>
+     <a class="lanmu" href="/zwj/controller/admin/recover_bak.php">恢复备份</a>
+  </div>
+<form action="/zwj/controller/admin/sql_bak.php" method="post" id="form1">
+备份文件名: <input type="text" name="filename" value="boolshop"><br>
+  <input type="submit" value="开始备份" class="submit">
+</form>
+<img src="/zwj/view/images/admin/loading.gif" alt="" class="loading" style="position:relative;left:10%;top:13px;display:none;">
+</body>
+</html>

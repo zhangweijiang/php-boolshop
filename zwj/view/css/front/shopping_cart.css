@@ -1,0 +1,36 @@
+.content{
+	margin:33px auto;
+	width:1000px;
+	border: 1px solid #dcdfe5;
+	font-family: 'Arial';
+	font-size: 15px;
+}
+.clear{
+	clear:both;
+	padding:0;
+	margin:0;
+}
+.content>div.jiesuan1{
+	margin:0 auto;
+	margin-top:11px;
+	line-height: 50px;
+	width:996px;
+	height:50px;
+	background: #e5e5e5;
+	margin-bottom:11px;
+}
+a.all_del:hover{
+	text-decoration: underline;
+}
+a.remove_jia:hover{
+	text-decoration: underline;
+}
+
+a.fenxiang:hover{
+	text-decoration: underline;
+}
+div.jiesuan_goods:hover{
+	cursor:pointer;
+}
+
+
